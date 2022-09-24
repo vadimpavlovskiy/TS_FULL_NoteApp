@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "full": "concurrently \"cd backend && nodemon --watch app.ts\" \"cd client && npm start \"",
+    "full": "concurrently \"cd backend && nodemon app.ts\" \"cd client && npm start \"",
     "server": " cd backend && npx nodemon app.ts",
     "front": "cd client && npm start"
   },
