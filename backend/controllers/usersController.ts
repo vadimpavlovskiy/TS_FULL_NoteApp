@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { pool } from "../db/connectPool";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import getToken from "../jwt/signToken";
 
 export const usersLogin = async (req: Request, res: Response) => {
@@ -20,8 +19,11 @@ export const usersLogin = async (req: Request, res: Response) => {
       throw new Error("Wrong password. Please, try again");
     }
 
-    return res.status(201).json({
+    const token = await getToken(user.rows[0].email);
+
+    return res.status(200).json({
       status: "success",
+      accessToken: token,
       data: user.rows[0],
     });
   } catch (err) {
@@ -38,18 +40,31 @@ export const usersRegister = async (req: Request, res: Response) => {
     const salt = await bcrypt.genSalt(10);
     const encryptedPass = await bcrypt.hash(password, salt);
 
-    const token = await getToken(email);
+    const userExist = await pool.query(
+      `SELECT * FROM users WHERE email = '${email}'`
+    );
+
+    if (userExist.rows.length !== 0) {
+      throw new Error("User is already exist. Please, provide a valid email");
+    }
 
     const user = await pool.query(
-      `INSERT INTO users (email, password, fullName ) VALUES ('${email}', '${encryptedPass}', '${fullName}') RETURNING *`
+      `INSERT INTO users (email, password, fullName) VALUES ('${email}', '${encryptedPass}', '${fullName}') ON CONFLICT(email) DO NOTHING RETURNING * `
     );
-    res.status(200).json({
+
+    if (user.rows.length === 0) {
+      throw new Error("User is already exist");
+    }
+
+    const token = await getToken(email);
+
+    return res.status(200).json({
       status: "success",
       accessToken: token,
       user: user.rows[0],
     });
   } catch (err) {
-    res.status(400).json({
+    return res.status(400).json({
       status: "rejected",
       err: err.message,
     });

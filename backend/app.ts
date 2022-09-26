@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { connectToDB } from "./db/connectToDB";
 import usersRouter from "./routes/usersRoutes";
+import noteRouter from "./routes/NoteRoutes";
 export const app = express();
 app.use(express.json());
 
@@ -20,3 +21,4 @@ app.listen(port, () => {
 });
 
 app.use("/users", usersRouter);
+app.use("/notes", noteRouter);
