@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { createUser } from "../axios/usersAxios";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import { Link } from "react-router-dom";
 import '../styles/RegForm.scss';
 
 const RegForm:FC = () => {
@@ -16,7 +17,7 @@ const RegForm:FC = () => {
     const handleSubmit = () => {
         createUser(email, password, fullName);
 
-        
+
     }
     return (
         <div className="reg-form">
@@ -26,8 +27,7 @@ const RegForm:FC = () => {
             <Input type="text" setState={setFirst} placeholder="First Name"/>
             <Input type="text" setState={setSecond} placeholder="Second Name"/>
             <Button text='Register' onClick={()=>handleSubmit()} />
-            <p>Already have an account? Please, log in</p>
-            <a href="#">Login</a>
+            <p>Already have an account? Please,  <Link to={'/login'}>log in</Link></p>
         </div>
     )
 }

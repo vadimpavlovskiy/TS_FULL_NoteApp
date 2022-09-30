@@ -16,3 +16,15 @@ export async function createUser(
     return err;
   }
 }
+
+export async function loginUser(email: string, password: string) {
+  try {
+    const user = await axios.post("users/login", {
+      email: email,
+      password: password,
+    });
+    return console.log(user);
+  } catch (err) {
+    return err;
+  }
+}

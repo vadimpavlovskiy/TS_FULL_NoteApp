@@ -15,7 +15,12 @@ export const usersLogin = async (req: Request, res: Response) => {
       throw new Error("Wrong credentials. Please, try again");
     }
 
-    if (user.rows[0].password !== password) {
+    const decryptedPassword = await bcrypt.compare(
+      password,
+      user.rows[0].password
+    );
+
+    if (!decryptedPassword) {
       throw new Error("Wrong password. Please, try again");
     }
 
