@@ -8,7 +8,7 @@ interface IButton {
 
 const Button:FC<IButton> = ({text, onClick}) => {
     return (
-        <div onClick={()=>onClick} className="button">
+        <div onClick={()=>onClick()} className="button">
             {text}
         </div>
     )

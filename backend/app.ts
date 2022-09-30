@@ -3,8 +3,10 @@ import dotenv from "dotenv";
 import { connectToDB } from "./db/connectToDB";
 import usersRouter from "./routes/usersRoutes";
 import noteRouter from "./routes/NoteRoutes";
+import cookieParser from "cookie-parser";
 export const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 dotenv.config({ path: "../.env" });
 

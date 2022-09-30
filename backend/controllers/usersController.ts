@@ -21,6 +21,9 @@ export const usersLogin = async (req: Request, res: Response) => {
 
     const token = await getToken(user.rows[0].email);
 
+    if (token) {
+      res.cookie("userToken", token, { httpOnly: true });
+    }
     return res.status(200).json({
       status: "success",
       accessToken: token,
@@ -52,13 +55,13 @@ export const usersRegister = async (req: Request, res: Response) => {
       `INSERT INTO users (email, password, fullName) VALUES ('${email}', '${encryptedPass}', '${fullName}') ON CONFLICT(email) DO NOTHING RETURNING * `
     );
 
-    if (user.rows.length === 0) {
-      throw new Error("User is already exist");
+    const token = await getToken(user.rows[0].email);
+
+    if (token) {
+      res.cookie("userToken", token, { httpOnly: true });
     }
 
-    const token = await getToken(email);
-
-    return res.status(200).json({
+    return res.status(201).json({
       status: "success",
       accessToken: token,
       user: user.rows[0],
