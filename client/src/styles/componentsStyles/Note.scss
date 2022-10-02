@@ -1,0 +1,39 @@
+.note {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+
+    padding: 1rem 0 0 1rem;
+
+    border: 1px solid rgb(227, 227, 227);
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.5s;
+
+    .note-title {
+        margin: 0;
+        font-size: 20px;
+
+    }
+    .note-text {
+        font-size: 14px;
+        font-style: italic;
+
+        margin-top: 0.75em;
+    }
+    .note-date {
+        margin-top: 1em;
+        font-size: 12px;
+    }
+}
+
+.note:hover {
+    border: 1px solid var(--color-secondary);
+}
+
+.note:active {
+    background-color: var(--color-secondary);
+}

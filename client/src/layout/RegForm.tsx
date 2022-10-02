@@ -3,7 +3,7 @@ import { createUser } from "../axios/usersAxios";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import { Link, useNavigate } from "react-router-dom";
-import '../styles/RegForm.scss';
+import '../styles/layoutStyles/RegForm.scss';
 
 const RegForm:FC = () => {
     

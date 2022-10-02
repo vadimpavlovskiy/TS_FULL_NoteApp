@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import '../styles/Input.scss';
+import '../styles/componentsStyles/Input.scss';
 
 interface IInput {
     placeholder: string,

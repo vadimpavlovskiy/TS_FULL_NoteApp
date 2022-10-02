@@ -3,6 +3,8 @@ import { getUsersNotes } from "../axios/usersAxios";
 import Header from "../layout/Header";
 import NotesList from "../layout/NotesList";
 
+import '../styles/pagesStyles/MainPage.scss'
+
 const MainPage = () => {
     const [notes, setNotes] = useState();
     useEffect(() => {
@@ -14,7 +16,7 @@ const MainPage = () => {
     }
     return (
         <div className="container">
-            <Header />
+            {/* <Header /> */}
        <NotesList notes={notes}/>
         </div>
     )
