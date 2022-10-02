@@ -34,3 +34,16 @@ export async function loginUser(email: string, password: string) {
     return error.toJSON();
   }
 }
+
+export async function getUsersNotes() {
+  try {
+    const notes = await axios.get("notes", { withCredentials: true });
+
+    console.log("====================================");
+    console.log(notes.data);
+    console.log("====================================");
+    return notes.data;
+  } catch (err) {
+    return err;
+  }
+}

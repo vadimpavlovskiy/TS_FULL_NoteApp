@@ -9,12 +9,12 @@ export const getAllUsersNote = async (req: Request, res: Response) => {
     const notes = await pool.query(
       `SELECT * FROM notes WHERE userID = '${email}'`
     );
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       userNotes: notes.rows,
     });
   } catch (err) {
-    res.status(404).json({
+    return res.status(404).json({
       status: "error",
       err,
     });

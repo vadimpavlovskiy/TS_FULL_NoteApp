@@ -17,10 +17,6 @@ const RegForm:FC = () => {
 
     const handleSubmit = () => {
         const user = createUser(email, password, fullName);
-
-        console.log(user);
-        
-        
     }
     return (
         <div className="reg-form">

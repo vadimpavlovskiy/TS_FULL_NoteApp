@@ -12,9 +12,6 @@ const LoginForm:FC = () => {
     const handleSubmit = async () => {
         const user = await loginUser(email, password);
         
-        console.log('====================================');
-        console.log(user);
-        console.log('====================================');
         if(user.status !== 401) {
             navigate('/main')
         }
