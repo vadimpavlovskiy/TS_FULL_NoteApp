@@ -8,6 +8,7 @@ import {
   Route,
 } from "react-router-dom";
 import LoginPage from './pages/LoginPage';
+import MainPage from './pages/MainPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />
+  },
+  {
+    path: '/main',
+    element: <MainPage />
   }
 ]);
 

@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import { createUser } from "../axios/usersAxios";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import '../styles/RegForm.scss';
 
 const RegForm:FC = () => {
@@ -12,12 +12,15 @@ const RegForm:FC = () => {
     const [first, setFirst] = useState('');
     const [second, setSecond] = useState('');
 
+
     let fullName = ''.concat(first, ' ', second);
 
     const handleSubmit = () => {
-        createUser(email, password, fullName);
+        const user = createUser(email, password, fullName);
 
-
+        console.log(user);
+        
+        
     }
     return (
         <div className="reg-form">

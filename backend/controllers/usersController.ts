@@ -29,9 +29,9 @@ export const usersLogin = async (req: Request, res: Response) => {
     if (token) {
       res.cookie("userToken", token, { httpOnly: true });
     }
+    delete user.rows[0].password;
     return res.status(200).json({
       status: "success",
-      accessToken: token,
       data: user.rows[0],
     });
   } catch (err) {
@@ -65,10 +65,9 @@ export const usersRegister = async (req: Request, res: Response) => {
     if (token) {
       res.cookie("userToken", token, { httpOnly: true });
     }
-
+    delete user.rows[0].password;
     return res.status(201).json({
       status: "success",
-      accessToken: token,
       user: user.rows[0],
     });
   } catch (err) {

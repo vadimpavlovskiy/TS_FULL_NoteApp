@@ -11,20 +11,26 @@ export async function createUser(
       password: password,
       fullName: fullName,
     });
-    return console.log(newUser);
-  } catch (err) {
-    return err;
+    return newUser;
+  } catch (error: any) {
+    return error.status;
   }
 }
 
 export async function loginUser(email: string, password: string) {
   try {
-    const user = await axios.post("users/login", {
-      email: email,
-      password: password,
-    });
-    return console.log(user);
-  } catch (err) {
-    return err;
+    const user = await axios.post(
+      "users/login",
+      {
+        email: email,
+        password: password,
+      },
+      { withCredentials: true }
+    );
+    if (user.status === 200) {
+      return user.data;
+    }
+  } catch (error: any) {
+    return error.toJSON();
   }
 }

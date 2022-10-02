@@ -1,15 +1,23 @@
 import React, { FC, useState } from "react";
 import { loginUser } from "../axios/usersAxios";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import Input from "../components/Input";
 import '../styles/LoginForm.scss'
 const LoginForm:FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate()
 
-    const handleSubmit = () => {
-        loginUser(email, password)
+    const handleSubmit = async () => {
+        const user = await loginUser(email, password);
+        
+        console.log('====================================');
+        console.log(user);
+        console.log('====================================');
+        if(user.status !== 401) {
+            navigate('/main')
+        }
     }
     return (
         <div className="log-form">
