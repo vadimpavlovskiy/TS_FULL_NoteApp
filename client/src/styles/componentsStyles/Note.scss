@@ -5,13 +5,13 @@
 
     padding: 1rem 0 0 1rem;
 
-    border: 1px solid rgb(227, 227, 227);
+    border: 3px solid var(--color-secondary);
 
     border-radius: 10px;
 
     cursor: pointer;
 
-    transition: 0.5s;
+    transition: 0.4s;
 
     .note-title {
         margin: 0;
@@ -31,9 +31,16 @@
 }
 
 .note:hover {
-    border: 1px solid var(--color-secondary);
+
+    border-color: var(--color-secondary);
+    background-color: var(--color-additional);
+
+    scale: 1.1;
+
 }
 
 .note:active {
-    background-color: var(--color-secondary);
+    scale: 1.05;
+    border-color: var(--color-additional);
+
 }

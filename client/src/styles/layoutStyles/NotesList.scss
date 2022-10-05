@@ -7,4 +7,18 @@
 
     width: 30%;
 
+    height: 100vh;
+
+    padding: 5% 5% 0 0;
+
+    border-right: 1px solid var(--color-secondary);
+
+    .notes-header {
+        display: flex;
+        flex-direction: row;
+
+        justify-content: space-between;
+        
+        align-items: center
+    }
 }

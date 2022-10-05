@@ -2,16 +2,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 300px;
-    height: 50px;
-    background-color: #eb3131;
+    width: 70px;
+    padding: 15px;
+    background-color: var(--color-secondary);
     color: white;
 
     border-radius: 15px;
 
+    font-size: 12px;
+
     cursor: pointer;
+
+    transition: 0.5s;
 }
 
 .button:hover {
-    background-color: #ec5e5e;
+    scale: 1.1;
+}
+
+.button:active {
+    background-color: var(--color-additional);
 }
