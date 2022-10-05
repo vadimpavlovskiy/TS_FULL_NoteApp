@@ -1,9 +1,9 @@
 import * as React from 'react'
 
 interface INotesContext {
-    notes: Array<any>,
-    selectedNote: any,
-    handleSelect: (param:object) => void,
+    notes: Array<any> | null,
+    selectedNote: any | null,
+    handleSelect: Function,
 }
 
 export const NoteContext = React.createContext<INotesContext | null>(null);
